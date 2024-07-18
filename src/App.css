@@ -1,0 +1,16 @@
+#root {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.name {
+  height: 1em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.read-the-docs {
+  color: #888;
+}
