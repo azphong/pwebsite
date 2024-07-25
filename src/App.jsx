@@ -3,8 +3,6 @@ import './App.css'
 import 'animate.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import axios from 'axios';
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 import Chat from './Chat';
 import Chatscope from './Chatscope';
 
@@ -29,7 +27,7 @@ export default function App() {
       </div>
       <div className="bg-red-300 h-half grid grid-cols-1 gap-4"> 
         <div data-aos='fade-right' className='grid grid-cols-1 place-items-center'>
-        <Chatscope />
+        <Chat />
         </div>      
         </div>
       <div className="bg-yellow-300 h-half grid grid-cols-1 gap-4 place-content-center"> 
@@ -44,7 +42,7 @@ export default function App() {
       </div>
       <div className="bg-green-300 h-half grid grid-cols-1 gap-4 place-items-center"> 
         <div data-aos='fade-right'>
-        <Chat />
+        {/* <Chat /> */}
         </div>
       </div>
     </div>
