@@ -1,23 +1,61 @@
 import axios from "axios";
+import { useState, useEffect } from 'react';
 
 export default function Chat() {
+    const [answer, setAnswer] = useState('');
+    const [question, setQuestion] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    // const buttonHandler = () => {
+    //     setLoading(true);
+    //     handleSubmit();
+    // }
+    // useEffect( () => {
+    //     window.console.log(loading);
+    // }, [loading]);
+
     function handleSubmit(e) {
         // Prevent the browser from reloading the page
         e.preventDefault();
-        const formData = new FormData(e.target)
+        setAnswer("Hmmm...")
+        setLoading(true)
+        // const formData = new FormData(e.target)
         axios.post('https://azph-aaronbot.hf.space/llm_on_cpu', {
-            prompt: formData.get("prompt")
+            // prompt: formData.get("prompt")
+            prompt: question
         })
-            .then(console.log(response));
+            .then(setQuestion(''))
+            .then(function (response) {
+            window.console.log(response);
+            setAnswer(response.data)
+            setLoading(false)
+            })
+            .catch(function (error) {
+            window.console.log(error);
+            })
+            // .then(setLoading(false))
+        
+    }
+
+    function handleChange(e) {
+        setQuestion(e.target.value);
     }
   
     return (
-        <form name='form2' target='_blank' onSubmit={handleSubmit} className="grid grid-cols-1 place-items-center">
-            <input type="text" name="prompt" className="w-64" placeholder="Message Aaronbot"
-            // class="shadow appearance-none border rounded w-64 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-            // id="username" 
-            />
-            <button type="submit" form='form2'>Send!</button>
+        <div className="place-items-center place-content-center">
+        <form onSubmit={handleSubmit} className="flex flex-row place-items-center place-content-center">
+            <input 
+                type="text" 
+                name="prompt" 
+                className="bg-transparent w-64 form-input border-transparent" 
+                placeholder="Message Aaronbot" 
+                onChange={handleChange} 
+                value={question} 
+                disabled={loading}
+                required/>
+            <button type="submit" disabled={loading}>Send!</button>
         </form>
+        <p>{answer}</p>
+        </div>
     )
   }
