@@ -47,7 +47,7 @@ export default function Chat() {
             <input 
                 type="text" 
                 name="prompt" 
-                className="bg-transparent w-64 form-input border-transparent" 
+                className="bg-transparent text-4xl w-3/4 form-input border-transparent place-items-center" 
                 placeholder="Message Aaronbot" 
                 onChange={handleChange} 
                 value={question} 
